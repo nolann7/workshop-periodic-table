@@ -59,14 +59,11 @@ function check(inputWord) {
 
   if (elementsSymbolsSet.has(inputWord.slice(0, 2))) {
     let result = [inputWord.slice(0, 2)].concat(check(inputWord.slice(2)));
-    let countLetters = result.join('').split('').length;
-    return countLetters === inputWord.length ? result : [];
+    return result.join('') === inputWord ? result : [];
   }
   if (elementsSymbolsSet.has(inputWord[0])) {
     let result = [inputWord[0]].concat(check(inputWord.slice(1)));
-    let countLetters = result.join('').split('').length;
-
-    return countLetters === inputWord.length ? result : [];
+    return result.join('') === inputWord ? result : [];
   }
 }
 
