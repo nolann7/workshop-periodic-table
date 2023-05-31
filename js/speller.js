@@ -34,22 +34,19 @@ const testArr = [
   "youth","yucky"
 ]
 let elements;
+let elementsSymbolsSet;
+const elementsSymbolsObj = {};
 
 await loadPeriodicTable();
-
-console.log(elements);
-const elementsSymbols = elements.map(el => el.symbol.toLowerCase());
-const elementsSymbolsSet = new Set(elementsSymbols);
-const elementsSymbolsObj = {};
-elements.forEach(val => {
-  elementsSymbolsObj[val.symbol.toLowerCase()] = val;
-});
-console.log(elementsSymbolsObj);
 
 // ****************************
 
 async function loadPeriodicTable() {
   elements = await (await fetch('periodic-table.json')).json();
+  elements.forEach(val => {
+    elementsSymbolsObj[val.symbol.toLowerCase()] = val;
+  });
+  elementsSymbolsSet = new Set(elements.map(el => el.symbol.toLowerCase()));
 }
 
 function check(inputWord) {
@@ -69,5 +66,5 @@ function check(inputWord) {
 
 function lookup(elementSymbol) {
   // return elements.find(el => el.symbol.toLowerCase() === elementSymbol);
-  return elementsSymbolsObj[elementSymbol]
+  return elementsSymbolsObj[elementSymbol];
 }
