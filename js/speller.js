@@ -70,16 +70,13 @@ function check(inputWord) {
   }
 }
 
-console.log(check('accept'));
+// console.log(check('accept'));
 // testArr.forEach(val => console.log(check(val)));
 
 function lookup(elementSymbol) {
   // TODO: return the element entry based on specified
   // symbol (case-insensitive)
-  const element = elements.find(
+  return elements.find(
     el => el.symbol.toLowerCase() === elementSymbol.toLowerCase(),
   );
-
-  return element;
 }
-console.log(lookup('h'));
