@@ -48,6 +48,7 @@ async function loadPeriodicTable() {
 }
 
 function check(inputWord) {
+  // debugger;
   // TODO: determine if `inputWord` can be spelled
   // with periodic table symbols; return array with
   // them if so (empty array otherwise)
@@ -58,17 +59,18 @@ function check(inputWord) {
     return [];
 
   if (elementsSymbolsSet.has(inputWord.slice(0, 2))) {
-    let result = [inputWord.slice(0, 2)].concat(check(inputWord.slice(2)));
-    return result.join('') === inputWord ? result : [];
+    let result = [inputWord.slice(0, 2), ...check(inputWord.slice(2))];
+    if (result.join('') === inputWord) return result;
   }
   if (elementsSymbolsSet.has(inputWord[0])) {
-    let result = [inputWord[0]].concat(check(inputWord.slice(1)));
+    let result = [inputWord[0], ...check(inputWord.slice(1))];
     return result.join('') === inputWord ? result : [];
   }
+  return [];
 }
 
-// console.log(check('accept'));
-// testArr.forEach(val => console.log(check(val)));
+// console.log(check('spam'));
+testArr.forEach(val => console.log(val, check(val)));
 
 function lookup(elementSymbol) {
   // TODO: return the element entry based on specified

@@ -12,6 +12,7 @@ else {
 // ****************************
 
 function ready(){
+  console.log(window)
 	var enterWordEl = document.getElementById("enter-word");
 	var spellBtn = document.getElementById("spell-btn");
 	var wordSpellingEl = document.getElementById("word-spelling");
@@ -33,10 +34,10 @@ function ready(){
 		enterWordEl.value = inputWord;
 
 		// validate the input
-		if (!/^[a-z]{3,}$/.test(inputWord)) {
-			alert("Enter a word at least 3 letters long!");
-			return;
-		}
+		// if (!/^[a-z]{3,}$/.test(inputWord)) {
+		// 	alert("Enter a word at least 3 letters long!");
+		// 	return;
+		// }
 
 		// attempt to spell word
 		var symbols = Speller.check(inputWord);
