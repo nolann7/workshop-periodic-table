@@ -40,6 +40,11 @@ await loadPeriodicTable();
 console.log(elements);
 const elementsSymbols = elements.map(el => el.symbol.toLowerCase());
 const elementsSymbolsSet = new Set(elementsSymbols);
+const elementsSymbolsObj = {};
+elements.forEach(val => {
+  elementsSymbolsObj[val.symbol.toLowerCase()] = val;
+});
+console.log(elementsSymbolsObj);
 
 // ****************************
 
@@ -48,16 +53,6 @@ async function loadPeriodicTable() {
 }
 
 function check(inputWord) {
-  // debugger;
-  // TODO: determine if `inputWord` can be spelled
-  // with periodic table symbols; return array with
-  // them if so (empty array otherwise)
-  if (
-    !elementsSymbolsSet.has(inputWord[0]) &&
-    !elementsSymbolsSet.has(inputWord.slice(0, 2))
-  )
-    return [];
-
   if (elementsSymbolsSet.has(inputWord.slice(0, 2))) {
     let result = [inputWord.slice(0, 2), ...check(inputWord.slice(2))];
     if (result.join('') === inputWord) return result;
@@ -70,12 +65,9 @@ function check(inputWord) {
 }
 
 // console.log(check('spam'));
-testArr.forEach(val => console.log(val, check(val)));
+// testArr.forEach(val => console.log(val, check(val)));
 
 function lookup(elementSymbol) {
-  // TODO: return the element entry based on specified
-  // symbol (case-insensitive)
-  return elements.find(
-    el => el.symbol.toLowerCase() === elementSymbol.toLowerCase(),
-  );
+  // return elements.find(el => el.symbol.toLowerCase() === elementSymbol);
+  return elementsSymbolsObj[elementSymbol]
 }
